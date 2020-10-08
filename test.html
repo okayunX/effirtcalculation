@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title > pilaf.com </title>
+  <meta charset="UTF-8">
+  <style>
+   .ma {
+   	color: blue;
+font-size: 20px;
+border-bottom:solid 1px black;
+clear: both;
+}
+   .title {
+  text-align:center;
+  background-color: blue;
+  font-size: 20px;
+  border:solid 2px black;
+}
+body{
+   background-color: yellow;
+}
+p{
+  width:100%;
+   background-color: green;
+}
+.mochi {
+float: left;
+padding-right: 20px;
+}
+  </style>
+<script type="text/javascript" src="jscalc.js"></script>
+</head>
+
+<body>
+  <div class="title">
+  <h1>
+努力値逆算カリキュレーター
+  </h1>
+</div>
+  <p style="color: red">被ダメから相手のポケモンの努力値(攻撃or特攻)を計算します
+    <br>
+
+     </p >
+     <p>
+
+    <div class="mochi">
+    <img src="robo24_194.jpg"alt="mochi"width="500px"title="餅">
+    <p>餅</p>
+  </div>
+
+
+    <div class="mochi">
+    <img src="tkn1.png"alt="tecno"width="500px"title="テクノ"/>
+    <p>テクノ</p></div>
+    </p>
+
+
+   <div class="ma">
+  <ul>
+
+  <li>1 </il>
+  <li>2 </il>
+
+  </ul>
+
+
+
+  <form name="frm1" action="dummy" class="exp01">
+  <input size="4" type="text" name="num1">　
+  <select name="cal0">
+  <option value="+">＋</option>
+  <option value="-">−</option>
+  <option value="*">＊</option>
+  <option value="/">／</option>
+  </select>　
+  <input size="4" type="text" name="num2">　
+  <strong>＝</strong>　
+  <input size="5" type="text" name="num3" readonly>　
+  <input type="button" value="計算" onclick="calc_sum();">　
+  <input type="button" value="クリア" onclick="return reset_exe();">
+
+  </form>
+  </div>
+
+
+
+
+</body>
+</html>

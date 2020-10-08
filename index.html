@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- META NAME="robots" content="index,follow" -->
+
+  <title>努力値計算機|ポケモン剣盾</title>
+    <meta charset="UTF-8">
+  <meta name="description" content="被ダメから相手の攻撃努力値を計算します。"/>
+<meta name="keywords" content="ポケモン,努力値計算,ダメージ計算,ダメージ計算,被ダメージ"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+     <meta name="google-site-verification" content="h8L5bFl6tLJYHGrC_rnWJISs1Po906stomAfPFZuiNQ" />
+  <link rel="canonical" href="https://pilafpoke.github.io/pokebackcul/">
+  <style>
+   .ma {
+   	color: yellow;
+font-size: 20px;
+border-bottom:solid 1px black;
+clear: both;
+}
+   .title {
+  text-align:center;
+  background-color: blue;
+  font-size: 20px;
+  border:solid 2px black;
+}
+
+body{
+   background-color:black;
+
+}
+p{
+  width:100%;
+   background-color: green;
+}
+.mochi {
+float: left;
+padding-right: 20px;
+}
+  </style>
+
+</head>
+
+<body text="white">
+
+<script type="text/javascript" src="jscalc.js"></script>
+
+  <div class="title">
+  <h1>努力値計算機|ポケモン剣盾</h1>
+
+</div>
+
+<div>
+  <p style="color: white">被ダメから相手のポケモンの努力値(攻撃or特攻)を計算
+</p>
+</div>
+<table border="1" >
+  <thead>
+  <tr >
+  　<th align="center">被ダメ</th>
+    <th align="center">技の威力</th>　
+    <th align="center">耐久の実数値（自）</th>
+    <th align="center">攻撃の種族値（相）</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <form name="frm1" action="dummy" class="exp01" >
+
+    <td align="center"><input size="4" type="text" name="damage"></td>
+    <td align="center"><input size="4" type="text"  name="moves"></td>
+  　<td align="center"><input size="4" type="text" name="dpoke_real"></td>
+  　<td align="center"><input size="4" type="text"  name="syuzoku"></td>
+</tr>
+</tbody>
+<tfoot>
+  <tr>
+    <td  align="right" colspan="4"> <input type="button" style="width: 100%; padding: 5px; background-color:salmon;" value="計算"  onclick="calc_sum();"> </td>
+</tr>
+</tfoot>
+</table>
+
+
+その他----------------------------------------------------------
+<br>
+  <input type="checkbox" id="typeitti" >タイプ一致
+  <input type="checkbox" id="kyuusyo" >急所
+  <input type="checkbox" id="wall" >壁
+  <input type="checkbox" id="double" >ダブルバトル
+    <input type="checkbox" id="burn" >やけど
+
+
+相性
+  <select name="effective" id="effective">
+        <option value="1">1/4</option>
+    <option value="2">1/2</option>
+      <option value="4" selected>1</option>
+    <option value="2">2</option>
+    <option value="4">4</option>
+
+    </select>
+
+  攻撃側ランク
+  <select name="a_rank" id="a_rank">
+    <option value="1">6</option>
+      <option value="2">5</option>
+    <option value="3">4</option>
+    <option value="4">3</option>
+    <option value="5">2</option>
+    <option value="6">1</option>
+        <option value="7" selected>0</option>
+    <option value="8">-1</option>
+      <option value="9">-2</option>
+    <option value="10">-3</option>
+    <option value="11">-4</option>
+    <option value="12">-5</option>
+    <option value="13">-6</option>
+    </select>
+
+  防御側ランク
+    <select name="b_rank" id="b_rank">
+      <option value="b+6">6</option>
+        <option value="b+5">5</option>
+      <option value="b+4">4</option>
+      <option value="b+3">3</option>
+      <option value="b+2">2</option>
+      <option value="b+1">1</option>
+          <option value="b+0" selected>0</option>
+      <option value="b-1">-1</option>
+        <option value="b-2">-2</option>
+      <option value="b-3">-3</option>
+      <option value="b-4">-4</option>
+      <option value="b-5">-5</option>
+      <option value="b-6">-6</option>
+      </select>
+
+
+天候
+  <select name="weather" id="weather">
+        <option value="0">なし</option>
+    <option value="1">あめ(水技)</option>
+      <option value="2">あめ(炎技)</option>
+      <option value="3">はれ（炎技）</option>
+        <option value="4">はれ（水技）</option>
+    <option value="5">あられ</option>
+    <option value="6">すなあらし（岩タイプ）</option>
+
+    </select>
+
+フィールド
+    <select name="field" id="field">
+          <option value="0">なし</option>
+                <option value="1">フィールド強化</option>
+      <option value="2">フィールド弱化</option>
+
+
+      </select>
+
+      <p></p>
+
+攻撃側特性
+  <select name="a_ability" id="genre">
+        <option value="0">なし</option>
+    <option value="1">アナライズ</option>
+    <option value="2">いろめがね</option>
+    <option value="3">エレキスキン</option>
+    <option value="4">かたいツメ</option>
+    <option value="5">がんじょうあご</option>
+    <option value="6">げきりゅう</option>
+    <option value="7">ごりむちゅう</option>
+    <option value="8">こんじょう</option>
+    <option value="9">サンパワー</option>
+    <option value="10">しんりょく</option>
+    <option value="11">すいほう</option>
+    <option value="12">スカイスキン</option>
+    <option value="13">すてみ</option>
+    <option value="14">スナイパー</option>
+    <option value="15">すなのちから</option>
+    <option value="16">スロースタート</option>
+    <option value="17">ダークオーラ</option>
+    <option value="18">ちからづく</option>
+    <option value="19">ちからもち</option>
+    <option value="20">てきおうりょく</option>
+        <option value="21">てつのこぶし</option>
+    <option value="22">テクニシャン</option>
+    <option value="23">とうそうしん(弱体)  </option>
+    <option value="24">とうそうしん(弱体)  </option>
+    <option value="25">どくぼうそう</option>
+    <option value="26">ねつぼうそう</option>
+    <option value="27">ノーマルスキン</option>
+    <option value="28">はがねつかい</option>
+    <option value="29">はがねのせいしん</option>
+    <option value="30">バッテリー</option>
+    <option value="31">はりきり</option>
+      <option value="32">はりこみ</option>
+    <option value="33">パワースポット</option>
+    <option value="34">パンクロック</option>
+    <option value="35">フェアリーオーラ</option>
+    <option value="36">フェアリースキン</option>
+        <option value="37">プラス</option>
+      <option value="38">フラワーギフト</option>
+    <option value="39">フリーズスキン</option>
+    <option value="40">ブレインフォース</option>
+    <option value="41">へんげんじさい</option>
+    <option value="42">マイナス</option>
+    <option value="43">むしのしらせ</option>
+    <option value="44">メガランチャー</option>
+    <option value="45">もうか</option>
+    <option value="46">もらいび</option>
+    <option value="47">ヨガパワー</option>
+    <option value="48">よわき</option>
+    <option value="49">リベロ</option>
+
+  </select>
+
+  攻撃側アイテム
+  <select name="a_item" id="genre">
+        <option value="0">なし</option>
+    <option value="1">いのちのたま</option>
+    <option value="2">こころのしずく</option>
+    <option value="3">こだわりはちまき</option>
+    <option value="4">こだわりメガネ</option>
+    <option value="5">こんごうだま</option>
+    <option value="6">しらたま</option>
+    <option value="7">タイプ強化アイテム(x1.2)</option>
+    <option value="8">たつじんのおび</option>
+    <option value="9">ちからのはちまき</option>
+    <option value="10">でんきだま</option>
+    <option value="11">ノーマルジェル</option>
+    <option value="12">はっきんだま</option>
+    <option value="13">ふといほね</option>
+        <option value="14">メトロノーム（2発目）</option>
+      <option value="15">メトロノーム（3発目）</option>
+        <option value="16">メトロノーム（4発目）</option>
+          <option value="17">メトロノーム（5発目）</option>
+              <option value="18">メトロノーム（6発目）</option>
+    <option value="19">ものしりめがね</option>
+    </select>
+
+  <p></p>
+
+    防御側特性
+    <select name="b_ability" id="genre">
+          <option value="0">なし</option>
+      <option value="1">あついしぼう</option>
+      <option value="2">オーラブレイク</option>
+      <option value="3">かんそうはだ</option>
+      <option value="4">くさのけがわ</option>
+      <option value="5">こおりのりんぷん</option>
+      <option value="6">すいほう</option>
+      <option value="7">たいねつ</option>
+      <option value="8">ハードロック</option>
+      <option value="9">パンクロック</option>
+      <option value="10">ファーコート</option>
+      <option value="11">ファントムガード</option>
+      <option value="12">フィルター</option>
+      <option value="13">ふしぎなウロコ</option>
+      <option value="14">フラワーギフト</option>
+            <option value="15">プリズムアーマー</option>
+      <option value="16">フレンドガード</option>
+      <option value="17">マルチスケイル</option>
+      <option value="18">もふもふ</option>
+
+          <option value="19">もふもふ（ほのお技）</option>
+
+      </select>
+
+    防御側アイテム
+    <select name="b_item" id="genre">
+          <option value="0">なし</option>
+      <option value="1">しんかのきせき</option>
+      <option value="2">とつげきチョッキ</option>
+      <option value="3">メタルパウダー</option>
+      <option value="4">半減実</option>
+  <option value="5">しんかいのウロコ</option>
+      </select>
+    <p></p>
+  計算結果-------------------------------------------------------
+    <p></p>
+   無補正　
+  <input size="5" type="text" name="doryomin" readonly>　
+    <strong>～</strong>　
+  <input size="5" type="text" name="doryomax" readonly>　
+  <p></p>
+  上昇補正
+    <input size="5" type="text" name="doryomin2" readonly>
+        <strong>～</strong>　
+    <input size="5" type="text" name="doryomax2" readonly>
+
+  <input type="button" value="クリア" onclick="return reset_exe();">
+
+
+   <!input size="5" type="text" name="debug" readonly>
+  </form>
+
+
+<div></div>
+  <p style="color: white">使い方</p>
+攻撃（特攻）努力値を計算したい相手の能力上昇を確認します。<br>
+技を受けます。この時に急所判定や、タイプ相性、タイプ一致かを確認します。<br>
+被ダメを計算し、上記の計算機に各値を入力します。<br>
+タイプ相性やランク、アイテム、その他の条件を「その他」の項目で入力します。<br>
+条件があっているか確認でき次第、「計算」ボタンを押します。<br>
+計算結果に性格無補正の努力値範囲と上昇補正の努力値の範囲が表示されます。<br>
+  <p></p>
+使用例<br>
+ハッサムvsミミッキュ対面<br>
+ミミッキュはA2段階上昇<br>
+<img src="2.jpg?raw=true" width="30%" height="30%" ><br>
+技はかげうち！タイプ一致上昇<br>
+<img src="kageuti.jpg" width="30%" height="30%" ><br>
+そしてきゅうしょ！<br>
+<img src="kyuusyo.jpg" width="30%" height="30%" ><br>
+いのちの玉をもっていた<br>
+被ダメはHPMAXからこの体力なので被ダメは109<br>
+<img src="hidame.jpg" width="30%" height="30%" ><br>
+これらの条件を計算機に入力し、計算！<br>
+<img src="test.png" width="30%" height="30%" ><br>
+統計的にようきASが多いので、相手のミミッキュは無補正でA252と予想できる。<br>
+
+  <p style="color: white">更新情報</p>
+
+レイアウト調整中　ポケモンリスト　技リスト追加予定 2020/8/29
+
+
+</body>
+</html>

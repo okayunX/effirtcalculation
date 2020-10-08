@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title > pokebackcal.com </title>
+  <meta charset="UTF-8">
+  <style>
+   .ma {
+   	color: yellow;
+font-size: 20px;
+border-bottom:solid 1px black;
+clear: both;
+}
+   .title {
+  text-align:center;
+  background-color: blue;
+  font-size: 20px;
+  border:solid 2px black;
+}
+body{
+   background-color:black;
+
+}
+p{
+  width:100%;
+   background-color: green;
+}
+.mochi {
+float: left;
+padding-right: 20px;
+}
+  </style>
+
+</head>
+
+
+
+<body text="white">
+
+<script type="text/javascript" src="jscalc.js"></script>
+
+  <div class="title">
+  <h1>
+努力値逆算機β(仮)
+
+  </h1>
+
+</div>
+
+<div>
+  <p style="color: white">被ダメから相手のポケモンの努力値(攻撃or特攻)を計算
+</p>
+</div>
+
+　被ダメ　 技の威力　耐久(実数値) 攻撃の種族値（相手）
+<p></p>
+  <form name="frm1" action="dummy" class="exp01">
+  <input size="4" type="text" name="damage">　
+    <input size="4" type="text" name="waza">　
+  <input size="4" type="text" name="dpoke_real">　
+  <input size="4" type="text" name="syuzoku">　
+
+  <input type="button" value="計算" onclick="calc_sum();">　
+  <p></p>
+
+その他----------------------------------------------------------
+<br>
+  <input type="checkbox" id="kyuusyo" >急所
+  <input type="checkbox" id="typeitti" >タイプ一致
+  <input type="checkbox" id="kyuusyo" >ダブルバトル
+    <input type="checkbox" id="burn" >やけど
+<br>
+  攻撃側ランク
+  <select name="a_rank" id="a_rank">
+    <option value="a+6">6</option>
+      <option value="a+5">5</option>
+    <option value="a+4">4</option>
+    <option value="a+3">3</option>
+    <option value="a+2">2</option>
+    <option value="a+1">1</option>
+        <option value="a+0" selected>0</option>
+    <option value="a-1">-1</option>
+      <option value="a-2">-2</option>
+    <option value="a-3">-3</option>
+    <option value="a-4">-4</option>
+    <option value="a-5">-5</option>
+    <option value="a-6">-6</option>
+    </select>
+
+  防御側ランク
+    <select name="b_rank" id="b_rank">
+      <option value="b+6">6</option>
+        <option value="b+5">5</option>
+      <option value="b+4">4</option>
+      <option value="b+3">3</option>
+      <option value="b+2">2</option>
+      <option value="b+1">1</option>
+          <option value="b+0" selected>0</option>
+      <option value="b-1">-1</option>
+        <option value="b-2">-2</option>
+      <option value="b-3">-3</option>
+      <option value="b-4">-4</option>
+      <option value="b-5">-5</option>
+      <option value="b-6">-6</option>
+      </select>
+
+  <br>
+天候
+  <select name="weather" id="weather">
+        <option value="noneweather">なし</option>
+    <option value="rain">あめ</option>
+      <option value="sun">はれ</option>
+    <option value="hail">あられ</option>
+    <option value="sand">すなあらし</option>
+
+    </select>
+
+フィールド
+    <select name="field" id="field">
+          <option value="nonefield">なし</option>
+                <option value="grassy_terrain">グラスフィールド</option>
+      <option value="electricy_terrain">エレキフィールド</option>
+      <option value="psychic_terrain">サイコフィールド</option>
+      <option value="misty_terrain">ミストフィールド</option>
+
+      </select>
+  <br>
+攻撃側特性
+  <select name="a_ability" id="genre">
+        <option value="none">なし</option>
+    <option value="analytic">アナライズ</option>
+    <option value="Tinted_Lens">色眼鏡</option>
+    <option value="Galvanize">エレキスキン</option>
+    <option value="Tough_Claws">かたいツメ</option>
+    <option value="Strong_Jaw">がんじょうあご</option>
+    <option value="Torrent">げきりゅう</option>
+    <option value="Gorilla_Tactics">ごりむちゅう</option>
+    <option value="Guts">こんじょう</option>
+    <option value="Solar_Power">サンパワー</option>
+    <option value="Overgrow">しんりょく</option>
+    <option value="Water_Bubble">すいほう</option>
+    <option value="Aerilate">スカイスキン</option>
+    <option value="Reckless">すてみ</option>
+    <option value="Sniper">スナイパー</option>
+    <option value="Sand_Force">すなのちから</option>
+    <option value="Slow_Start">スロースタート</option>
+    <option value="Dark_Aura">ダークオーラ</option>
+    <option value="Sheer_Force">ちからづく</option>
+    <option value="Huge_Power">ちからもち</option>
+    <option value="Adaptability">てきおうりょく</option>
+    <option value="Technician">テクニシャン</option>
+    <option value="JapaneseFoods">とうそうしん</option>
+    <option value="Toxic_Boost">どくぼうそう</option>
+    <option value="Flare_Boost">ねつぼうそう</option>
+    <option value="Normalize">ノーマルスキン</option>
+    <option value="Steelworker">はがねつかい</option>
+    <option value="Steely_Spirit">はがねのせいしん</option>
+    <option value="Battery">バッテリー</option>
+    <option value="Hustle">はりきり</option>
+    <option value="Power_Spot">パワースポット</option>
+    <option value="Punk_Rock">パンクロック</option>
+    <option value="Fairy_Aura">フェアリーオーラ</option>
+    <option value="Pixilate">フェアリースキン</option>
+    <option value="Refrigerate">フリーズスキン</option>
+    <option value="Neuroforce">ブレインフォース</option>
+    <option value="Protean">へんげんじさい</option>
+    <option value="Minus">マイナス</option>
+    <option value="Swarm">むしのしらせ</option>
+    <option value="Mega_Launcher">メガランチャー</option>
+    <option value="Blaze">もうか</option>
+    <option value="Flash_Fire">もらいび</option>
+    <option value="Pure_Power">ヨガパワー</option>
+    <option value="Defeatist">よわき</option>
+    <option value="Libero">リベロ</option>
+
+  </select>
+  攻撃側アイテム
+  <select name="a_item" id="genre">
+        <option value="none">なし</option>
+    <option value="Life_Orb">いのちのたま</option>
+    <option value="Soul_Dew">こころのしずく</option>
+
+    <option value="Choice_Band">こだわりはちまき</option>
+    <option value="Choice_Specs">こだわりメガネ</option>
+    <option value="Adamant_Orb">こんごうだま</option>
+    <option value="Lustrous_Orbs">しらたま</option>
+
+    <option value="ItalianFoods">タイプ強化アイテム(x1.2)</option>
+
+    <option value="Expert_Belt">たつじんのおび</option>
+    <option value="Muscle_Band">ちからのはちまき</option>
+    <option value="Light_Ball">でんきだま</option>
+    <option value="Normal_Gem">ノーマルジェル</option>
+    <option value="Griseous_Orb">はっきんだま</option>
+    <option value="Thick_Club">ふといほね</option>
+        <option value="Wise_Glasses">ものしりめがね</option>
+    </select>
+
+    防御側特性
+    <select name="b_ability" id="genre">
+          <option value="none">なし</option>
+      <option value="Thick_Fat">あついしぼう</option>
+      <option value="Aura_Break">オーラブレイク</option>
+      <option value="Dry _kin">かんそうはだ</option>
+      <option value="Grass Pelt">くさのけがわ</option>
+      <option value="Ice_Scales">こうりのりんぷん</option>
+      <option value="Water_Bubble">すいほう</option>
+      <option value="Heatproof">たいねつ</option>
+      <option value="Solid_Rock">ハードロック</option>
+      <option value="Punk_Rock">パンクロック</option>
+      <option value="Fur_Coat">ファーコート</option>
+      <option value="Filter">フィルター</option>
+      <option value="Marvel_Scale">ふしぎなウロコ</option>
+      <option value="Flower_Gift">フラワーギフト</option>
+      <option value="Friend_Guard">フレンドガード</option>
+      <option value="	Multiscale">マルチスケイル</option>
+      <option value="Fluffy">もふもふ</option>
+      </select>
+
+    防御側アイテム
+    <select name="b_item" id="genre">
+          <option value="none">なし</option>
+      <option value="Eviolite">しんかのきせき</option>
+      <option value="Assault_Vest">とつげきチョッキ</option>
+      <option value="Metal_Powder">メタルパウダー</option>
+      <option value="berry">半減実</option>
+
+      </select>
+    <p></p>
+  計算結果-------------------------------------------------------
+    <p></p>
+   無補正
+  <input size="5" type="text" name="doryomin" readonly>　
+    <strong>～</strong>　
+  <input size="5" type="text" name="doryomax" readonly>　
+  <p></p>
+  上昇補正
+    <input size="5" type="text" name="doryomin2" readonly>
+        <strong>～</strong>　
+    <input size="5" type="text" name="doryomax2" readonly>
+
+  <input type="button" value="クリア" onclick="return reset_exe();">
+
+
+   <input size="5" type="text" name="debug" readonly>
+  </form>
+
+
+<div></div>
+  <p style="color: white">使い方</p>
+  <p style="color: white">更新情報</p>
+aaa
+
+
+</body>
+</html>
